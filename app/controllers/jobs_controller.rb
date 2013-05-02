@@ -34,7 +34,7 @@ class JobsController < ApplicationController
     if @job.save
 
 
-      temporary_file = params[:job][:cad_file].tempfile.path
+      temporary_file = params[:job][:cad_file].path
 
       response = RestClient.post("https://api.sketchfab.com/v1/models", {
         token: "8765434590494ef890281bfb7c718b18",
