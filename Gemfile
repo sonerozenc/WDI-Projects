@@ -12,12 +12,13 @@ gem 'rest-client'
 gem 'ruby-multipart-post'
 gem 'geocoder'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
 
 group :development do
 	gem 'better_errors'
+	gem 'binding_of_caller'
 end
 
-gem 'binding_of_caller'
 
 
 # Gems used only for assets and not required
