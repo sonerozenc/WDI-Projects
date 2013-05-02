@@ -41,7 +41,7 @@ class JobsController < ApplicationController
         token: "8765434590494ef890281bfb7c718b18",
         # fileModel: FileUploadIO.new('/Users/sonerozenc/Downloads/Up_Spool_Clip_v3-0.STL', "application/octet-stream"),
         # fileModel: FileUploadIO.new("/Users/sonerozenc/Desktop/wdi_hw/week_3/makersmap112/public" + @job.cad_file.url(:original, timestamp: false) , "application/octet-stream"),
-        fileModel: FileUploadIO.new(temporary_file, "application/octet-stream"),
+        fileModel: File.read(temporary_file),
         title: "Clip file",
         description: "This is my new clip file that I downloaded from Sketchfab",
         tags: "clip",
