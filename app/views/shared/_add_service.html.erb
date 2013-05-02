@@ -1,0 +1,30 @@
+<div>
+    <h2>Add a new service</h2>
+    <%= form_for @service do |f| %>
+      <% if @service.errors.any? %>
+        <div class="errors">
+          <ul>
+          <% @service.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <p><%= f.text_field :title, :placeholder => 'Title' %></p>
+      <p>
+        What type of service:
+        <br>
+        <%= f.select :type_of_service, ['Individual Hub', 'Design Bureau','Online Service'] %>
+      </p>
+      <p>
+        What 3D printer model:
+        <br>
+        <%= f.select :printer_model, ['Makerbot', 'Form1','Upverter'] %>
+      </p>
+      <p><%= f.text_field :address, :placeholder => 'Address' %></p>
+      <p><%= f.text_field :phone, :placeholder => 'Phone' %></p>
+      <p><%= f.text_field :website, :placeholder => 'Website' %></p>
+      <p><%= f.submit "Add service" %></p>
+    <% end %>
+  </div>
+</div>

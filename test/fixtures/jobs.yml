@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  cad_file: MyString
+  material: MyString
+  is_private: false
+  order_status: MyString
+  service: 
+  user: 
+
+two:
+  title: MyString
+  cad_file: MyString
+  material: MyString
+  is_private: false
+  order_status: MyString
+  service: 
+  user: 

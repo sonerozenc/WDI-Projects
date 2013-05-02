@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: makersmap112_dev
+  pool: 5
+  username: sonerozenc
+  password: 12345678
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: makersmap112_test
+  pool: 5
+  username: sonerozenc
+  password: 12345678
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: makersmap112
+  username: sonerozenc
+  password: 12345678
+  pool: 5
+  timeout: 5000

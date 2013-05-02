@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="span9">
+		<h2>Designers</h2>
+		<% @users.each do |user| %>
+			<% if user.is_designer %>
+				<li>
+					<%= link_to user.name, user_url(user.id) %><br>
+					<%= user.address %>
+				</li>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="span3">
+		<% unless current_user %>
+
+			<%= render 'shared/login' %>
+			<%= render 'users/signup' %>	
+
+		<% end %>
+	</div>
+</div>

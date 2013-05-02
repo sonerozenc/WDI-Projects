@@ -1,0 +1,23 @@
+<div id="publicservicesall" class="row">
+	<div class="span9">
+		<h2>Services</h2>
+
+		<% @services.each do |service| %>
+			<li>
+				<%= link_to service.title, service_url(service.id) %>
+				<br>
+				<%= service.type_of_service %>
+				<br>
+				<%= service.address %>
+			</li>
+		<% end %>
+	</div>
+	<div class="span3">
+		<% unless current_user %>
+			
+			<%= render 'shared/login' %>
+			<%= render 'users/signup' %>	
+
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "MakersMAP" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+
+    <!-- playing with Google Maps -->
+    <style>
+      #map_canvas {
+        /*width: 500px;*/
+        width:100%;
+        height: 600px;
+        background-color: #CCC;
+      }
+    </style>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+
+      function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(51.5178757, -0.1188454),
+          zoom: 2,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById("map_canvas"), map_options);
+          $.getJSON('/jobs.json', function(data) {
+            $.each(data, function(index, value) {
+              // console.log(index)
+              console.log(data[index].user.latitude)
+              // console.log(value.user.latitude)
+              // console.log(value.user.longitude)
+              var markerLatLng = new google.maps.LatLng(data[index].user.latitude, data[index].user.longitude);
+              // var markerLatLng = new google.maps.LatLng(value.user.latitude, value.user.longitude);
+              var image = 'http://cdn1.iconfinder.com/data/icons/berlin/32x32/graphic-design.png';
+
+              var marker = new google.maps.Marker({
+                position: markerLatLng,
+                map: map,
+                icon: image,
+                title: data[index].user.name.toString() + '\'s ' + data[index].title.toString()
+              });
+
+              // var contentString = '<h3>' + data[index].user.name.toString() + '\'s ' + data[index].title.toString() + '</h3>' +
+              //   data[index].user.latitude.toString() +
+              //   '<br>' +
+              //   data[index].user.longitude.toString() +
+              //   '<br>' +
+              //   data[index].user.email +
+              //   '<br>' +
+              //   '<a href="http://www.' + data[index].user.website.toString() + '">' + data[index].user.website + '</a>' +
+              //   '<br>' +
+              //   data[index].user.phone;
+
+              if (typeof value.sketchfab == 'undefined') {
+                var contentString = 'Sorry no iframe';
+              } else {
+                var contentString = value.sketchfab.html;
+              }
+              
+              var infowindow = new google.maps.InfoWindow({ content: contentString,
+                // maxWidth: 200
+              });
+
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+              });
+
+            });
+          });
+          
+          $.getJSON('/users.json', function(data) {
+            $.each(data, function(index, value) {
+              var markerLatLng = new google.maps.LatLng(value.latitude, value.longitude);
+              var image = 'http://cdn1.iconfinder.com/data/icons/freeapplication/png/24x24/Person.png';
+              var marker = new google.maps.Marker({
+                position: markerLatLng,
+                map: map,
+                icon: image,
+                title: value.name.toString() + '\'s ' + value.website.toString()
+              });
+
+              var contentString = '<h3>' + value.name.toString() + '\'s ' + value.website.toString() + '</h3>' +
+                value.latitude.toString() +
+                '<br>' +
+                value.longitude.toString() +
+                '<br>' +
+                value.email +
+                '<br>' +
+                '<a href="http://www.' + value.website.toString() + '">' + value.website + '</a>' +
+                '<br>' +
+                value.phone;
+              
+              var infowindow = new google.maps.InfoWindow({ content: contentString,
+                // maxWidth: 200
+              });
+
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+              });
+
+            });
+          });
+
+          $.getJSON('/services.json', function(data) {
+            $.each(data, function(index, value) {
+              var markerLatLng = new google.maps.LatLng(value.latitude, value.longitude);
+              var image = 'http://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/133-32.png';
+              var marker = new google.maps.Marker({
+                position: markerLatLng,
+                map: map,
+                icon: image,
+                title: value.title.toString() + '\'s ' + value.website.toString()
+              });
+
+              var contentString = '<h3>' + value.title.toString() + '\'s ' + value.website.toString() + '</h3>' +
+                value.latitude.toString() +
+                '<br>' +
+                value.longitude.toString() +
+                '<br>' +
+                '<a href="http://www.' + value.website.toString() + '">' + value.website + '</a>' +
+                '<br>' +
+                value.phone;
+              
+              var infowindow = new google.maps.InfoWindow({ content: contentString,
+                // maxWidth: 200
+              });
+
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+              });
+
+            });
+          });
+
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <!-- end of playing with Google Maps -->
+
+  </head>
+  <body>
+    <div id="wrapper" >
+      <header class="navbar navbar-fixed-top">
+        <nav class="navbar-inner">
+          <div class="container">
+            <%= render 'layouts/navigation' %>
+          </div>
+        </nav>
+      </header>
+      <div id="main" role="main">
+        <div class="container">
+          <div class="content">
+             <div class="row">
+              <div class="span12">
+                <%= render 'layouts/messages' %>
+                <%= yield %>
+              </div>
+            </div>
+            <footer>
+            </footer>
+          </div>
+        </div> <!--! end of .container -->
+      </div> <!--! end of #main -->
+    </div>
+  </body>
+</html>
+</html>

@@ -1,0 +1,49 @@
+<div>
+    <h2>Sign up</h2>
+    <%= form_for @user do |f| %>
+      <% if @user.errors.any? %>
+        <div class="errors">
+          <ul>
+          <% @user.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name, :placeholder => 'Name' %>
+      </p>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email, :placeholder => 'Email address' %>
+      </p>
+      <p>
+        <%= f.label :address %>
+        <%= f.text_field :address, :placeholder => 'Address' %>
+      </p>
+      <p>
+        <%= f.label :phone %>
+        <%= f.text_field :phone, :placeholder => 'Phone' %>
+      </p>
+      <p>
+        <%= f.label :website %>
+        <%= f.text_field :website, :placeholder => 'Website' %>
+      </p>
+      <p>
+        Are you a:
+        <br>
+        <%= f.select :is_designer, [['Designer', true], ['Service provider', false]] %>
+      </p>
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password, :placeholder => 'Password' %>
+      </p>
+      <p>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, :placeholder => 'Confirm password' %>
+      </p>
+      <p><%= f.submit "Sign up" %></p>
+    <% end %>
+  </div>
+</div>

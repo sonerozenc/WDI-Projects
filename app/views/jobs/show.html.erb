@@ -1,0 +1,76 @@
+<h1><%= @job.title %></h1>
+<ul>
+	<li type = none ><b>CAD file name:</b> <%= @job.cad_file %></li>
+	<li type = none ><b>Material:</b> <%= @job.material %></li>
+	<li type = none ><b>Privacy:</b> 
+		<% if @job.is_private %>
+			private
+		<% else %>
+			public
+		<% end %>
+	</li>
+	<li type = none ><b>Order status:</b> <%= @job.order_status %></li>
+	<li type = none ><%= link_to 'Edit', edit_job_path(@job) %></li>
+	<li type = none >
+		<%= link_to 'Delete', @job, :confirm => 'Are you sure?', :method => :delete %>
+  </li>
+</ul>
+
+<div class="row">
+		<div class="span9">
+			<% if !@job.images.empty? %>
+				<ul>
+				<% @job.images.each do |image| %>
+					<li type = "none" >
+						<img src = "<%= image.file %>" class="img-rounded" width=300px height=300px/>
+						<br>
+						<%= image.caption %>
+					</li>
+				<% end %>
+				</ul>
+			<% end %>
+		</div>
+		<div class="span3">
+
+			<!-- <%= @sketchfab_model_viewer %> -->
+
+			<%= form_for @image, :html => { :multipart => true } do |form| %>
+				<%= form.text_field :caption, :placeholder => 'Caption' %>
+  			<%= form.file_field :file %>
+  			<%= form.hidden_field :job, :value => @job.id %>
+  			<%= form.submit "Add image" %>
+			<% end %>
+
+			<p>There are <%= @job.comments.length %> comments on this job:</p>
+
+			<% if !@job.comments.empty? %>
+				<ul>
+				<% @job.comments.each do |comment| %>
+					<li>
+						<b><%= comment.user.name %></b> says:
+						<br>
+						<i><%= comment.subject %></i>
+						<br>
+						<%= comment.message %>
+					</li>
+				<% end %>
+				</ul>
+			<% end %>
+
+			<% if current_user %>
+				<%= form_for([@job, @comment]) do |f| %>
+				  <p><%= f.text_field :subject, :placeholder => 'Subject' %></p>
+				  <p><%= f.text_area :message, :placeholder => 'Message' %></p>
+				  <p><%= f.submit "Add comment" %></p>
+				<% end %>
+			<% else %>
+				<p>
+					LEAVE A COMMENT
+					<br>
+					You must be <%= link_to "logged in", root_path %> to post a comment.
+				</p>
+			<% end %>
+		</div>
+	</div>
+
+<%= link_to 'Back to list of jobs', root_path %>

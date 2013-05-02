@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  provider_url: MyString
+  provider_name: MyString
+  thumbnail_url: MyString
+  thumbnail_width: MyString
+  thumbnail_height: MyString
+  author_name: MyString
+  author_url: MyString
+  title: MyString
+  html: MyString
+  width: 1
+  height: 1
+  version: MyString
+  type: 
+
+two:
+  provider_url: MyString
+  provider_name: MyString
+  thumbnail_url: MyString
+  thumbnail_width: MyString
+  thumbnail_height: MyString
+  author_name: MyString
+  author_url: MyString
+  title: MyString
+  html: MyString
+  width: 1
+  height: 1
+  version: MyString
+  type: 

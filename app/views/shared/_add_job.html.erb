@@ -1,0 +1,29 @@
+<div>
+    <%= form_for @job, :html => { :multipart => true } do |f| %>
+      <% if @job.errors.any? %>
+        <div class="errors">
+          <ul>
+          <% @job.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <p><%= f.text_field :title, :placeholder => 'Title' %></p>
+      <p><%= f.file_field :cad_file, :placeholder => 'CAD file URL' %></p>
+      <p><%= f.text_field :material, :placeholder => 'Material' %></p>
+      <p>
+        Privacy:
+        <br>
+        <%= f.select :is_private, [['private', true], ['public', false]] %>
+      </p>
+      <p><%= f.text_field :order_status, :placeholder => 'Order Status' %></p>
+      <p>
+      	Which service do you want to use?
+        <br>
+    		<%= f.collection_select :service_id, Service.all, :id, :title %>
+      </p>
+      <p><%= f.submit %></p>
+    <% end %>
+  </div>
+</div>

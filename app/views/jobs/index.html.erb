@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="span9">
+		<h2>Public Jobs</h2>
+		<% @jobs.each do |job| %>
+				<% unless job.is_private %>
+					<li>
+						<%= link_to job.title, job_url(job.id) %><br>
+						<%= job.user.address %>
+					</li>
+				<% end %>
+			<% end %>
+	</div>
+	<div class="span3">
+
+		<% unless current_user %>
+
+			<%= render 'shared/login' %>
+			<%= render 'users/signup' %>	
+
+		<% end %>
+	</div>
+</div>

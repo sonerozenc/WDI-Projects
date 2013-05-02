@@ -1,0 +1,95 @@
+<% if current_user %>
+
+	<h1>My Profile</h1>
+	<ul>
+	  <li type = none ><%= current_user.name %> is a 
+	  	<% if current_user.is_designer %>
+	  		designer
+	  	<% else %>
+	  		service provider.
+	  	<% end %>
+	  </li>
+	  <li type = none ><%= current_user.email %></li>
+	  <li type = none ><%= current_user.address %></li>
+	  <li type = none ><%= current_user.phone %></li>
+	  <li type = none ><%= current_user.website %></li>
+	</ul>
+
+	<div class="row">
+		<div class="span9">
+			<!-- playing with Google Maps -->
+			<div id="map_canvas" ></div>
+			<!-- end of playing with Google Maps -->
+			<h3>List of my jobs:</h3>
+			<% current_user.jobs.each do |job| %>
+				<li><%= link_to job.title, job_url(job.id) %></li>
+				<% unless job.images.empty? %>
+					<img src = "<%= job.images.first.file %>" class="img-rounded" width=300px height=300px/>
+				<% end %>
+			<% end %>
+		</div>
+
+		<div class="span3">
+			<h2>Add a new job</h2>
+			<%= render 'shared/add_job' %>
+		</div>
+
+		<% unless current_user.is_designer %>
+			<div class="row">
+				<div class="span9">
+					<h3>List of my services:</h3>
+					<% current_user.services.each do |service| %>
+						<li><%= link_to service.title, service_url(service.id) %></li>
+					<% end %>
+				</div>
+				<div class="span3">
+					<%= render 'shared/add_service' %>
+				</div>
+			</div>
+		<% end %>
+
+<% else %>
+
+	<div class="row">
+		<div class="span9">
+			<!-- playing with Google Maps -->
+			<div id="map_canvas" ></div>
+			<!-- end of playing with Google Maps -->
+			<h2>Public jobs</h2>
+			<% @jobs.each do |job| %>
+				<% unless job.is_private %>
+					<li type='none'>
+						<!-- <img id="map" src="http://maps.googleapis.com/maps/api/staticmap?center=<%= job.user.latitude %>,<%= job.user.longitude %>&zoom=11&size=300x300&sensor=false"><br> -->
+						<%= link_to job.title, job_url(job.id) %><br>
+						<%= job.user.address %>
+						<br>
+						<br>
+					</li>
+				<% end %>
+			<% end %>
+			<br>
+			<h2 class = "publicservicesbox" >Public services</h2>
+			<% @services.each do |service| %>
+				<li>
+					<%= link_to service.title, service_url(service.id) %>
+					<br>
+					<%= service.address %>
+				</li>
+			<% end %>
+			<br>
+			<h2>Public designers</h2>
+			<% @users.each do |user| %>
+				<% if user.is_designer %>
+					<li>
+						<%= link_to user.name, user_url(user.id) %><br>
+						<%= user.address %>
+					</li>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="span3">
+			<%= render 'shared/login' %>
+			<%= render 'users/signup' %>	
+		</div>
+
+<% end %>
