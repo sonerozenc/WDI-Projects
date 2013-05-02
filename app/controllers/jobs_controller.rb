@@ -35,6 +35,7 @@ class JobsController < ApplicationController
 
 
       temporary_file = params[:job][:cad_file].path
+      puts temporary_file
 
       response = RestClient.post("https://api.sketchfab.com/v1/models", {
         token: "8765434590494ef890281bfb7c718b18",
