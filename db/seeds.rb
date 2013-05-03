@@ -27,20 +27,20 @@ jobs = Job.create([
   { :title => 'Coin Mirror', :material => 'metal', :is_private => false, :order_status => 'pending', :user => users[0], :service => services[0] },
 ])
 
-images = Image.create([
-  { :caption => 'Coin Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'coin_mirror_1.jpg')), :user => users[0], :job => jobs[0] },
-  { :caption => 'Coin Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'coin_mirror_2.jpg')), :user => users[1], :job => jobs[0] },
-  { :caption => 'Flag Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'flag_mirror_1.jpg')), :user => users[2], :job => jobs[1] },
-  { :caption => 'Flag Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'flag_mirror_2.jpg')), :user => users[0], :job => jobs[1] },
-  { :caption => 'Stamp Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_1.jpg')), :user => users[1], :job => jobs[2] },
-  { :caption => 'Stamp Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_2.jpg')), :user => users[1], :job => jobs[2] },
-  { :caption => 'Stamp Mirror 3', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_3.jpg')), :user => users[1], :job => jobs[2] },
-  { :caption => 'Stamp Mirror 4', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_4.jpg')), :user => users[1], :job => jobs[2] },
-  { :caption => 'Tetris Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'tetris_mirror_1.jpg')), :user => users[2], :job => jobs[3] },
-  { :caption => 'Tetris Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'tetris_mirror_2.jpg')), :user => users[2], :job => jobs[3] },
-  { :caption => 'Cursor Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'cursor_mirror_1.jpg')), :user => users[2], :job => jobs[4] },
-  { :caption => 'Cursor Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'cursor_mirror_2.jpg')), :user => users[2], :job => jobs[4] },
-])
+# images = Image.create([
+#   { :caption => 'Coin Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'coin_mirror_1.jpg')), :user => users[0], :job => jobs[0] },
+#   { :caption => 'Coin Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'coin_mirror_2.jpg')), :user => users[1], :job => jobs[0] },
+#   { :caption => 'Flag Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'flag_mirror_1.jpg')), :user => users[2], :job => jobs[1] },
+#   { :caption => 'Flag Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'flag_mirror_2.jpg')), :user => users[0], :job => jobs[1] },
+#   { :caption => 'Stamp Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_1.jpg')), :user => users[1], :job => jobs[2] },
+#   { :caption => 'Stamp Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_2.jpg')), :user => users[1], :job => jobs[2] },
+#   { :caption => 'Stamp Mirror 3', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_3.jpg')), :user => users[1], :job => jobs[2] },
+#   { :caption => 'Stamp Mirror 4', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'stamp_mirror_4.jpg')), :user => users[1], :job => jobs[2] },
+#   { :caption => 'Tetris Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'tetris_mirror_1.jpg')), :user => users[2], :job => jobs[3] },
+#   { :caption => 'Tetris Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'tetris_mirror_2.jpg')), :user => users[2], :job => jobs[3] },
+#   { :caption => 'Cursor Mirror 1', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'cursor_mirror_1.jpg')), :user => users[2], :job => jobs[4] },
+#   { :caption => 'Cursor Mirror 2', :file => File.open(File.join(Rails.root, 'db', 'fixtures', 'cursor_mirror_2.jpg')), :user => users[2], :job => jobs[4] },
+# ])
 
 comments = Comment.create([
   { :subject => 'Brilliant', :message => 'This is a brilliant design.', :user => users[2], :job => jobs[0] },
@@ -51,3 +51,7 @@ comments = Comment.create([
   { :subject => 'Not sure', :message => 'I m not sure about this design.', :user => users[0], :job => jobs[3] },
   { :subject => 'Fantastichen', :message => 'Wov, fantastic!!!', :user => users[1], :job => jobs[4] },
 ])
+
+# sketchfabs = Sketchfab.create([
+#   { :html => '<iframe frameborder="0" height="480" width="854" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" src="http://skfb.ly/5l4jihgfda?autostart=0&transparent=0&autospin=0&controls=1"></iframe>', :job => [0]}
+# ])
